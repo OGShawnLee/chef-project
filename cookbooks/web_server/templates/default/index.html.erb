@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= node['web_server']['site_title'] %></title>
+  <style>
+    :root {
+      --primary: #f38020; /* Color corporativo de Chef */
+      --primary-dark: #cc5803;
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #10b981;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .chef-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(243, 128, 32, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 0.4rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .alert-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(30, 41, 59, 0.6));
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .alert-icon {
+      font-size: 2rem;
+      background: var(--accent);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .alert-content h3 {
+      color: #34d399;
+      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+    }
+
+    .alert-content p {
+      color: #e2e8f0;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      word-break: break-all;
+    }
+
+    .card-extra {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .steps-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .steps-section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .steps-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .step-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .step-number {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: auto;
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="chef-badge">🍳 Chef Infra • Demostración en Vivo</div>
+      <h1><%= node['web_server']['site_title'] %></h1>
+      <p class="subtitle"><%= node['web_server']['message'] %></p>
+    </header>
+
+    <div class="alert-card">
+      <div class="alert-icon">✓</div>
+      <div class="alert-content">
+        <h3>Estado Deseado Alcanzado (Idempotencia Verificada)</h3>
+        <p>Este servidor fue aprovisionado automáticamente mediante Chef Infra Client. Si esta receta se ejecuta nuevamente, ningún paquete ni servicio será alterado innecesariamente.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Datos recolectados automáticamente por Ohai -->
+      <div class="card">
+        <div class="card-label">Nodo / Hostname (Ohai)</div>
+        <div class="card-value"><%= node['hostname'] rescue 'localhost' %></div>
+        <div class="card-extra">Identificador único en el catálogo</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Sistema Operativo (Ohai)</div>
+        <div class="card-value"><%= node['platform'].capitalize rescue 'Linux' %> <%= node['platform_version'] rescue '' %></div>
+        <div class="card-extra">Kernel: <%= node['os_version'] rescue 'Linux' %></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Dirección IP Primaria (Ohai)</div>
+        <div class="card-value"><%= node['ipaddress'] rescue '127.0.0.1' %></div>
+        <div class="card-extra">Puerto de escucha: <%= node['web_server']['port'] %></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Memoria del Sistema (Ohai)</div>
+        <div class="card-value"><%= (node['memory']['total'].to_i / 1024 rescue 'N/A') %> MB</div>
+        <div class="card-extra">Procesador: <%= node['cpu']['total'] rescue '1' %> Core(s)</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Entorno de Despliegue</div>
+        <div class="card-value" style="color: var(--primary);"><%= node['web_server']['environment'] %></div>
+        <div class="card-extra">Cookbook: web_server v1.0.0</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Última Convergencia</div>
+        <div class="card-value" style="font-size: 1rem;"><%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %></div>
+        <div class="card-extra">Ejecutado vía Chef Zero / Local Mode</div>
+      </div>
+    </div>
+
+    <div class="steps-section">
+      <h2>⚙️ Ciclo de Ejecución de Chef en este Servidor</h2>
+      <ul class="steps-list">
+        <li class="step-item">
+          <div class="step-number">PASO 1</div>
+          <div class="step-title">Ohai Discovery</div>
+          <div class="step-desc">Inspecciona el hardware, IP, memoria y versión del SO.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-number">PASO 2</div>
+          <div class="step-title">Compile Phase</div>
+          <div class="step-desc">Evalúa el código Ruby y compila el catálogo de recursos.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-number">PASO 3</div>
+          <div class="step-title">Convergence</div>
+          <div class="step-desc">Aplica cambios únicamente si el sistema difiere del estado deseado.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-number">PASO 4</div>
+          <div class="step-title">Compliance</div>
+          <div class="step-desc">Servidor web en línea, validado y auditado sin errores.</div>
+        </li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>Desarrollado para la materia de <strong>Despliegue de Software</strong> • 7° Semestre • Universidad Veracruzana</p>
+      <p style="margin-top: 0.25rem;">Presentado por: <strong><%= node['web_server']['author'] %></strong></p>
+    </footer>
+  </div>
+</body>
+</html>
