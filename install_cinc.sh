@@ -24,6 +24,13 @@ if command -v chef-client &>/dev/null; then
     exit 0
 fi
 
+# Asegurar que curl esté instalado (Debian 12 minimal no incluye curl por defecto)
+if ! command -v curl &>/dev/null; then
+    echo "=> 'curl' no encontrado en el sistema base. Instalando curl y certificados..."
+    sudo apt-get update -y
+    sudo apt-get install -y curl ca-certificates
+fi
+
 # Descarga e instalación oficial y segura desde omnitruck
 echo "=> Descargando e instalando Cinc Client vía omnitruck..."
 curl -L https://omnitruck.cinc.sh/install.sh | sudo bash
