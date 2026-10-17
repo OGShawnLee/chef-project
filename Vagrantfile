@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
     echo "🍳 Iniciando aprovisionamiento con Chef en la VM..."
     echo "=========================================================="
     cd /vagrant
+    sed -i 's/\r$//' install_cinc.sh run_demo.sh
     chmod +x install_cinc.sh run_demo.sh
     ./install_cinc.sh
     ./run_demo.sh
