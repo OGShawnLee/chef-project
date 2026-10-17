@@ -137,7 +137,7 @@ chef-project/
 │       ├── recipes/default.rb      -> Receta en Ruby DSL con recursos nativos de systemd.
 │       └── templates/default/
 │           ├── index.html.erb      -> Dashboard HTML5 moderno inyectado con datos de Ohai.
-│           └── easter_egg.html.erb -> Plantilla secreta del Reto Final (Augustus Caesar).
+│           └── easter_egg.html.erb -> Plantilla secreta del Reto Final (Easter Egg).
 │
 └── 🚀 SCRIPTS AUXILIARES:
     ├── install_cinc.sh            -> Descarga e instala Cinc Client en Debian en 15 segundos.

@@ -199,14 +199,14 @@ Para validar que completaste la práctica base, toma y guarda las siguientes **d
 
 ---
 
-## 🏆 9. Reto Final del Laboratorio: El Monumento Oculto del Emperador
+## 🏆 9. Reto Final del Laboratorio: El Monumento Oculto
 
 Para evitar la copia mecánica y validar que has comprendido cómo Chef gestiona el **estado deseado**, las **plantillas dinámicas (`.erb`)** y la **convergencia diferencial**, deberás resolver el siguiente desafío:
 
 ---
 
 ### 🏛️ El Escenario del Reto
-Dentro de la estructura del repositorio existe una plantilla histórica secreta en formato Embedded Ruby ubicada en:  
+Dentro de la estructura del repositorio existe una plantilla secreta en formato Embedded Ruby ubicada en:  
 `cookbooks/web_server/templates/default/easter_egg.html.erb`
 
 Sin embargo, si abres tu navegador web e intentas acceder a:  
@@ -215,14 +215,14 @@ Sin embargo, si abres tu navegador web e intentas acceder a:
 El servidor web Nginx te arrojará un error **`404 Not Found`**. Esto ocurre porque la receta actual de Chef **no tiene declarada esta plantilla** dentro de su catálogo de recursos, por lo que para el sistema operativo simplemente no existe.
 
 > 🛡️ **Nota Antifraude (Guardia Pretoriana):**  
-> No intentes renombrar el archivo `.erb` a `.html` ni abrirlo con doble clic desde tu laptop (`file://`). La plantilla requiere que **Chef Infra e inyecte los datos reales de Ohai** de tu máquina virtual y que sea servida por **Nginx**; de lo contrario, se activará el bloqueo de la Guardia Pretoriana.
+> No intentes renombrar el archivo `.erb` a `.html` ni abrirlo con doble clic desde tu laptop (`file://`). La plantilla requiere que **Chef Infra e inyecte los datos reales de Ohai** de tu máquina virtual y que sea servida por **Nginx**; de lo contrario, se activará el bloqueo de seguridad.
 
 ---
 
 ### 🎯 Tu Misión
 1. Modificar la receta principal de Chef ([`cookbooks/web_server/recipes/default.rb`](cookbooks/web_server/recipes/default.rb)) en la **Sección 7 (Zona del Reto Final)** para declarar que la plantilla `easter_egg.html.erb` debe compilarse y desplegarse en el directorio raíz del servidor web (`/var/www/html/easter_egg.html`) con permisos `0644` y propietario `root`.
 2. Converger la máquina virtual en caliente utilizando **Vagrant** (sin reiniciar ni destruir la máquina).
-3. Desbloquear y visualizar la página secreta de tributo a **Augustus Caesar** en tu navegador, verificando que aparezca el sello de autenticidad de Ohai con el Hostname e IP de tu VM.
+3. Desbloquear y descubrir la página secreta en tu navegador, verificando que aparezca el sello de autenticidad de Ohai con el Hostname e IP de tu VM.
 
 ---
 
@@ -259,13 +259,13 @@ El servidor web Nginx te arrojará un error **`404 Not Found`**. Esto ocurre por
    `Chef Infra Client finished, 1/X resources updated`  
    *(Esto demuestra que Chef no reinstaló Nginx ni reescribió la página de inicio; únicamente compiló e instaló la plantilla faltante).*
 2. **Carga Exitosa y Sello Ohai en Navegador:**  
-   Al visitar **`http://localhost:8080/easter_egg.html`**, la pantalla de error 404 desaparecerá y se revelará la página editorial de tributo a **Augustus Caesar** (*«Moriemur, sed Roma vivet»*), mostrando en la barra superior y en el pie de página el **Hostname y la IP real de tu VM inyectados por Ohai**.
+   Al visitar **`http://localhost:8080/easter_egg.html`**, la pantalla de error 404 desaparecerá y se revelará el monumento oculto del servidor, mostrando en la barra superior y en el pie de página el **Hostname y la IP real de tu VM inyectados por Ohai**.
 
 ---
 
 ### 📸 Evidencia del Reto para el Profesor
 Para validar tu entrega completa del laboratorio, adjunta una tercera evidencia:
-* **Evidencia 3 (Reto Completado):** Captura de pantalla de la página de Augustus en `http://localhost:8080/easter_egg.html` donde sea visible el **Nodo Imperial / Sello Ohai** con los datos de tu VM, acompañada de la captura del bloque `template` que agregaste en `recipes/default.rb`.
+* **Evidencia 3 (Reto Completado):** Captura de pantalla de la página secreta en `http://localhost:8080/easter_egg.html` donde sea visible el **Sello Ohai** con los datos de tu VM, acompañada de la captura del bloque `template` que agregaste en `recipes/default.rb`.
 
 ---
 

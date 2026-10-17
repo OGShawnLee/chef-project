@@ -94,7 +94,7 @@ remote_directory "#{node['web_server']['doc_root']}/Fonts" do
 end
 
 # ------------------------------------------------------------------------------
-# 7. ZONA DEL RETO FINAL: El Monumento Oculto del Emperador
+# 7. ZONA DEL RETO FINAL: El Monumento Oculto
 # ------------------------------------------------------------------------------
 # Agrega aquí abajo el recurso 'template' para compilar y desplegar la plantilla
 # 'easter_egg.html.erb' en "#{node['web_server']['doc_root']}/easter_egg.html".

@@ -100,13 +100,13 @@ chef-project/
 │       ├── attributes/
 │       │   └── default.rb      # Variables configurables (puerto, título, autor)
 │       ├── files/
-│       │   └── default/        # Recursos estáticos (imágenes romanas y fuentes WOFF2)
+│       │   └── default/        # Recursos estáticos y tipografías locales (WOFF2)
 │       ├── recipes/
 │       │   └── default.rb      # Receta en Ruby DSL (apt, package, directory, template, service)
 │       └── templates/
 │           └── default/
 │               ├── index.html.erb      # Dashboard principal inyectado con métricas de Ohai
-│               └── easter_egg.html.erb # Plantilla secreta del Reto Final (Augustus Caesar)
+│               └── easter_egg.html.erb # Plantilla secreta del Reto Final (Easter Egg)
 ├── LAB_GUIDE.md                # Guía práctica del laboratorio (Antes -> Auto -> Resultado)
 ├── MONOGRAFIA_CHEF.md          # Monografía técnica exhaustiva en prosa continua
 ├── ARQUITECTURA_Y_FLUJO.md     # Explicación del ciclo de vida y modelo de capas
