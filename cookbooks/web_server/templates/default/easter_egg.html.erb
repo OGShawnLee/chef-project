@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Augustus Caesar — Moriemur, sed Roma vivet</title>
+  
+  <!-- Fuentes Editoriales Clásicas de Apoyo para Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* Fuentes Locales: Ranade (Solo pesos utilizados en formato WOFF2) */
+    @font-face {
+      font-family: 'Ranade-Light';
+      src: url('./Fonts/Ranade-Light.woff2') format('woff2');
+      font-weight: 300;
+      font-display: swap;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Ranade-LightItalic';
+      src: url('./Fonts/Ranade-LightItalic.woff2') format('woff2');
+      font-weight: 300;
+      font-display: swap;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Ranade-Regular';
+      src: url('./Fonts/Ranade-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Ranade-Medium';
+      src: url('./Fonts/Ranade-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Ranade-MediumItalic';
+      src: url('./Fonts/Ranade-MediumItalic.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Ranade-Bold';
+      src: url('./Fonts/Ranade-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+      font-style: normal;
+    }
+
+    :root {
+      /* Fondo oscuro ligeramente rojo (vino profundo / oxblood nocturno) */
+      --bg-primary: #160d0d;
+      --bg-surface: #211414;
+      --bg-surface-soft: #281919;
+
+      /* Paleta Pastel Nostálgica */
+      --pastel-cream: #f3e8dc;
+      --pastel-ivory: #dfd2c5;
+      --pastel-muted: #b59b91;
+      --pastel-subtle: #846c64;
+      --pastel-rose: #e49b90;
+      --pastel-gold: #f2dca6;
+      --pastel-sage: #b8c4b8;
+
+      /* Líneas divisorias sutiles */
+      --border-hairline: rgba(228, 155, 144, 0.14);
+      --border-quote: rgba(242, 220, 166, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(120, 38, 35, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 40%, rgba(228, 155, 144, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(95, 25, 25, 0.22) 0%, transparent 60%);
+      color: var(--pastel-ivory);
+      font-family: 'Ranade-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Textura nostálgica de grano analógico muy sutil */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* ------------------------------------------------------------------
+       CANDADO ANTIFRAUDE DE LA GUARDIA PRETORIANA (Bloqueo file:// y .erb crudo)
+    ------------------------------------------------------------------ */
+    #praetorian-lock {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .lock-card {
+      max-width: 620px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-quote);
+      border-radius: 4px;
+      padding: 48px 40px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .lock-badge {
+      display: inline-block;
+      font-family: 'Ranade-Medium', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pastel-rose);
+      background: rgba(228, 155, 144, 0.12);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .lock-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--pastel-cream);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .lock-desc {
+      font-family: 'Ranade-Light', sans-serif;
+      font-size: 14.5px;
+      color: var(--pastel-ivory);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .lock-code {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-hairline);
+      padding: 14px 18px;
+      font-family: monospace;
+      font-size: 12.5px;
+      color: var(--pastel-gold);
+      text-align: left;
+      border-radius: 3px;
+    }
+
+    /* Contenedor Editorial Principal (Inspirado en el layout limpio de Lorem Ipsum) */
+    .page-wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ------------------------------------------------------------------
+       NAVEGACIÓN SUPERIOR MINIMALISTA
+    ------------------------------------------------------------------ */
+    .top-nav {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr 140px;
+      gap: 24px;
+      padding: 36px 0 64px 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--pastel-muted);
+    }
+
+    .top-nav .brand {
+      font-family: 'Ranade-Bold', sans-serif;
+      color: var(--pastel-cream);
+      letter-spacing: 0.02em;
+    }
+
+    .top-nav ul {
+      list-style: none;
+    }
+
+    .top-nav li {
+      margin-bottom: 2px;
+    }
+
+    .top-nav a {
+      color: var(--pastel-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .top-nav a:hover {
+      color: var(--pastel-gold);
+    }
+
+    .top-nav .nav-meta {
+      text-align: right;
+      color: var(--pastel-rose);
+      font-family: 'Ranade-Medium', sans-serif;
+    }
+
+    /* ------------------------------------------------------------------
+       CABECERA EDITORIAL Y BLOQUE DESTACADO
+    ------------------------------------------------------------------ */
+    .intro-header {
+      margin-bottom: 44px;
+    }
+
+    .editorial-h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 46px;
+      line-height: 1.12;
+      color: var(--pastel-cream);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .editorial-lead {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.32;
+      color: var(--pastel-muted);
+      max-width: 780px;
+    }
+
+    /* Bloque Hero con estilo de caja destacada + barra lateral derecha */
+    .hero-showcase-grid {
+      display: grid;
+      grid-template-columns: 44px 1fr 190px;
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 110px;
+    }
+
+    .hero-Left-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--pastel-rose);
+      padding-top: 6px;
+    }
+
+    .hero-feature-card {
+      background-color: var(--bg-surface);
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+    }
+
+    .hero-card-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 12px;
+      font-family: 'Ranade-Medium', sans-serif;
+      color: var(--pastel-cream);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-card-bar span.tag {
+      background-color: rgba(228, 155, 144, 0.14);
+      color: var(--pastel-rose);
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-art-container {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      overflow: hidden;
+    }
+
+    .hero-art-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: sepia(0.12) contrast(0.96) brightness(0.92);
+      display: block;
+    }
+
+    .hero-inscription {
+      padding: 28px 30px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.55;
+      color: var(--pastel-cream);
+      background-color: var(--bg-surface);
+    }
+
+    .hero-inscription small {
+      display: block;
+      margin-top: 10px;
+      font-family: 'Ranade-Regular', sans-serif;
+      font-style: normal;
+      font-size: 12px;
+      color: var(--pastel-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .hero-aside-note {
+      padding-top: 4px;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--pastel-muted);
+    }
+
+    .hero-aside-note h4 {
+      font-family: 'Ranade-Bold', sans-serif;
+      font-size: 12px;
+      color: var(--pastel-cream);
+      margin-bottom: 8px;
+    }
+
+    .hero-aside-note .ohai-stamp {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-family: 'Ranade-Regular', sans-serif;
+      font-size: 11px;
+      color: var(--pastel-gold);
+    }
+
+    /* ------------------------------------------------------------------
+       SECCIONES EDITORIALES (ESTRUCTURA FIEL A LOREM IPSUM)
+    ------------------------------------------------------------------ */
+    .editorial-section {
+      margin-bottom: 115px;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 1.15;
+      color: var(--pastel-cream);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 1.35;
+      color: var(--pastel-muted);
+      max-width: 720px;
+    }
+
+    /* Grid de 2 columnas: Columna izquierda (imagen/nota) + Columna derecha (prosa) */
+    .section-body-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Columna Izquierda: Imagen Editorial y Pie de Foto */
+    .editorial-sidebar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-bottom: 14px;
+      filter: contrast(0.97) sepia(0.08);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .sidebar-caption {
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 10px;
+      font-family: 'Ranade-Light', sans-serif;
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: var(--pastel-muted);
+    }
+
+    .sidebar-caption strong {
+      display: block;
+      font-family: 'Ranade-Medium', sans-serif;
+      color: var(--pastel-cream);
+      margin-bottom: 2px;
+    }
+
+    /* Emblema tipográfico inspirado en el póster "Build To RULE" */
+    .build-to-rule-poster {
+      background: linear-gradient(180deg, rgba(45, 22, 22, 0.7) 0%, rgba(22, 13, 13, 0.9) 100%);
+      border: 1px solid var(--border-hairline);
+      border-radius: 2px;
+      padding: 28px 18px 24px 18px;
+      margin-bottom: 14px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .btr-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 0.9;
+      color: var(--pastel-rose);
+      letter-spacing: -0.02em;
+    }
+
+    .btr-top em {
+      font-family: 'Ranade-MediumItalic', sans-serif;
+      font-size: 15px;
+      color: var(--pastel-muted);
+      margin-left: 4px;
+    }
+
+    .btr-bottom {
+      font-family: 'Instrument Serif', 'Cormorant Garamond', serif;
+      font-size: 76px;
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--pastel-rose) 0%, var(--pastel-gold) 65%, var(--pastel-cream) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 4px;
+    }
+
+    /* Columna Derecha: Prosa Principal */
+    .editorial-prose {
+      max-width: 560px;
+    }
+
+    .prose-h3 {
+      font-family: 'Ranade-Bold', sans-serif;
+      font-size: 15px;
+      color: var(--pastel-cream);
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+
+    .prose-h3 + p {
+      margin-top: 0;
+    }
+
+    .editorial-prose p {
+      font-family: 'Ranade-Light', 'Ranade-Regular', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.82;
+      color: var(--pastel-ivory);
+      margin-bottom: 20px;
+    }
+
+    .editorial-prose p strong {
+      font-family: 'Ranade-Medium', sans-serif;
+      color: var(--pastel-cream);
+      font-weight: 500;
+    }
+
+    .editorial-prose a,
+    .accent-underline {
+      color: var(--pastel-gold);
+      text-decoration: underline;
+      text-decoration-color: rgba(242, 220, 166, 0.4);
+      text-underline-offset: 3px;
+    }
+
+    /* Citas indentadas con línea vertical fina (idénticas a Lorem Ipsum) */
+    .editorial-quote {
+      border-left: 1px solid var(--border-quote);
+      padding-left: 22px;
+      margin: 28px 0;
+      font-family: 'Ranade-LightItalic', sans-serif;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--pastel-gold);
+    }
+
+    .editorial-quote cite {
+      display: block;
+      margin-top: 6px;
+      font-family: 'Ranade-Regular', sans-serif;
+      font-style: normal;
+      font-size: 12px;
+      color: var(--pastel-muted);
+    }
+
+    /* Sub-sección secundaria en la misma columna */
+    .prose-subblock {
+      margin-top: 42px;
+    }
+
+    /* ------------------------------------------------------------------
+       PIE DE PÁGINA MINIMALISTA + BOTÓN CIRCULAR "TOP"
+    ------------------------------------------------------------------ */
+    .editorial-footer {
+      border-top: 1px solid var(--border-hairline);
+      padding: 48px 0 72px 0;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr 1fr 60px;
+      gap: 24px;
+      align-items: start;
+      font-size: 12px;
+      color: var(--pastel-muted);
+    }
+
+    .footer-col h5 {
+      font-family: 'Ranade-Bold', sans-serif;
+      font-size: 12px;
+      color: var(--pastel-cream);
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 4px;
+      font-family: 'Ranade-Light', sans-serif;
+    }
+
+    .top-circle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pastel-cream);
+      text-decoration: none;
+      font-family: 'Ranade-Medium', sans-serif;
+      font-size: 11px;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .top-circle-btn:hover {
+      border-color: var(--pastel-rose);
+      background-color: rgba(228, 155, 144, 0.08);
+    }
+
+    /* Responsividad */
+    @media (max-width: 780px) {
+      .top-nav {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-Left-mark {
+        display: none;
+      }
+      .section-body-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .editorial-sidebar {
+        max-width: 280px;
+      }
+      .editorial-footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- ====================================================================
+       PANTALLA DE BLOQUEO ANTIFRAUDE (Se activa si se abre sin Chef/Nginx)
+       ==================================================================== -->
+  <div id="praetorian-lock">
+    <div class="lock-card">
+      <div class="lock-badge">⚔️ Guardia Pretoriana • Acceso Denegado</div>
+      <h1 class="lock-title">Un Emperador No Toma Atajos</h1>
+      <p class="lock-desc">
+        Has intentado abrir este archivo localmente en tu navegador sin que haya sido compilado por <strong>Chef Infra (Ohai)</strong> ni servido por <strong>Nginx</strong> dentro de la máquina virtual.<br><br>
+        Para desbloquear el monumento a <strong>Augustus Caesar</strong>, declara el recurso <code>template</code> en tu receta y converge el nodo:
+      </p>
+      <div class="lock-code">
+        1. Edita: cookbooks/web_server/recipes/default.rb<br>
+        2. Declara el recurso: template "/var/www/html/easter_egg.html"<br>
+        3. Ejecuta: vagrant provision<br>
+        4. Visita: http://localhost:8080/easter_egg.html
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       CONTENIDO PRINCIPAL DEL TRIBUTO A AUGUSTUS (Desbloqueado vía Chef)
+       ==================================================================== -->
+  <div id="imperial-monument" class="page-wrapper">
+
+    <!-- Navegación Superior Minimalista -->
+    <nav class="top-nav">
+      <div class="brand">Imperium Romanum</div>
+      <ul>
+        <li><a href="#augustus">Augustus Caesar</a></li>
+        <li><a href="#eternidad">Moriemur, sed Roma vivet</a></li>
+      </ul>
+      <ul>
+        <li><a href="#emperador">El Despertar del Emperador</a></li>
+        <li><a href="#legado">Virtus &amp; Gravitas</a></li>
+      </ul>
+      <div class="nav-meta">SPQR • A.D. XIV</div>
+    </nav>
+
+    <!-- Cabecera Principal -->
+    <header class="intro-header">
+      <h1 class="editorial-h1">Augustus &amp; la Eternidad de Roma</h1>
+      <p class="editorial-lead">
+        Nosotros moriremos, pero Roma vivirá. Crónica sobre la voluntad inquebrantable del joven que encontró una república de ladrillo y legó un imperio de mármol.
+      </p>
+    </header>
+
+    <!-- Bloque Destacado Superior -->
+    <section class="hero-showcase-grid">
+      <div class="hero-Left-mark">LXIII</div>
+
+      <div class="hero-feature-card">
+        <div class="hero-card-bar">
+          <span>Pax Romana • Nodo Imperial: <strong><%= node['hostname'] rescue 'debian-vm' %></strong> (<%= node['ipaddress'] rescue '127.0.0.1' %>)</span>
+          <span class="tag">CONVERGIDO VÍA CHEF INFRA</span>
+        </div>
+        <div class="hero-art-container">
+          <img src="roman-art.jpg" alt="Ciudad Eterna de Roma">
+        </div>
+        <div class="hero-inscription">
+          «Moriemur, sed Roma vivet. Los hombres son breves como el aliento del invierno, pero la obra forjada con disciplina, orden y sangre permanece en pie cuando los siglos se convierten en polvo.»
+          <small>INSCRIPCIÓN IMPERIAL • PLANTILLA ERB COMPILADA POR OHAI EN <%= (node['platform'].upcase rescue 'LINUX') %> <%= (node['platform_version'] rescue '') %></small>
+        </div>
+      </div>
+
+      <aside class="hero-aside-note">
+        <h4>Build To Rule</h4>
+        <p>
+          Has desbloqueado el monumento oculto del servidor. Así como Roma trazó acueductos y calzadas para dominar el tiempo, quien domina su infraestructura gobierna su propio destino.
+        </p>
+        <div class="ohai-stamp">
+          Sello de Autenticidad Ohai:<br>
+          Host: <%= node['hostname'] rescue 'localhost' %><br>
+          Fecha: <%= Time.now.strftime("%Y-%m-%d %H:%M") rescue '' %>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SECCIÓN 1: LA HISTORIA LEGENDARIA DE AUGUSTUS -->
+    <section id="augustus" class="editorial-section">
+      <div class="section-header">
+        <h2 class="section-h2">De Ladrillo a Mármol</h2>
+        <p class="section-subtitle">
+          A los dieciocho años, sin ejército propio y rodeado de los asesinos de su tío, Cayo Octavio decidió no reclamar piedad, sino el dominio del mundo conocido.
+        </p>
+      </div>
+
+      <div class="section-body-grid">
+        <!-- Izquierda: Retrato de Augustus -->
+        <aside class="editorial-sidebar">
+          <img src="roman-2.jpg" alt="Imperator Caesar Augustus" class="sidebar-photo">
+          <div class="sidebar-caption">
+            <strong>Imperator Caesar Augustus</strong>
+            Primer Emperador de Roma (63 a.C. – 14 d.C.). Arquitecto del Principado y de dos siglos de Pax Romana.
+          </div>
+        </aside>
+
+        <!-- Derecha: Historia Legendaria -->
+        <div class="editorial-prose">
+          <h3 class="prose-h3">El Joven que Silenció la Tormenta</h3>
+          <p>
+            Cuando Julio César cayó apuñalado a los pies de la curia en los Idus de Marzo del año 44 a.C., Roma era un caldero de traición, senadores corruptos y legiones desangradas por guerras civiles. Su heredero adoptivo, <strong>Cayo Octavio</strong>, era apenas un joven de dieciocho años y salud frágil que estudiaba en Apolonia. Su propia madre y sus consejeros le suplicaron que renunciara a la herencia y ocultara su nombre para salvar la vida.
+          </p>
+          <p>
+            Octavio hizo exactamente lo opuesto. Cruzó el mar hacia Italia sin más armas que su nombre y una frialdad estratégica sobrecogedora. Donde generales veteranos como Marco Antonio veían a un muchacho fácil de manipular, Octavio tejió alianzas con paciencia quirúrgica, levantó legiones leales a su causa y derrotó uno por uno a todos los hombres que habían subestimado su determinación.
+          </p>
+
+          <blockquote class="editorial-quote">
+            «Urbem latericium inveni, marmoream reliqui.»<br>
+            Encontré una Roma construida de ladrillo, y la dejé cubierta de mármol.
+            <cite>— Augusto César, según Suetonio (Vida de los Doce Césares)</cite>
+          </blockquote>
+
+          <p>
+            Tras la batalla de Accio en el 31 a.C., quedó como único señor del Mediterráneo. Sin embargo, su mayor proeza no ocurrió en el campo de batalla, sino en el silencio del gobierno. Con el título de <strong>Augustus</strong> —el venerable, el majestuoso—, reformó las leyes, saneó las finanzas, aseguró las fronteras desde Hispania hasta el Éufrates e inauguró la <span class="accent-underline">Pax Romana</span>: la era de mayor estabilidad, esplendor arquitectónico y florecimiento humano de la antigüedad.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: NOSOTROS MORIREMOS, ROMA VIVIRÁ -->
+    <section id="eternidad" class="editorial-section">
+      <div class="section-header">
+        <h2 class="section-h2">Nosotros Moriremos, Roma Vivirá</h2>
+        <p class="section-subtitle">
+          La grandeza de una civilización nace cuando los hombres plantan olivos y levantan columnas cuya sombra disfrutarán generaciones que aún no han nacido.
+        </p>
+      </div>
+
+      <div class="section-body-grid">
+        <!-- Izquierda: Emblema Tipográfico Build To Rule -->
+        <aside class="editorial-sidebar">
+          <div class="build-to-rule-poster">
+            <div class="btr-top">Build<em>To</em></div>
+            <div class="btr-bottom">RULE</div>
+          </div>
+          <div class="sidebar-caption">
+            <strong>Lex Aeterna</strong>
+            El poder efímero busca el aplauso inmediato; la verdadera autoridad construye estructuras que desafían los siglos.
+          </div>
+        </aside>
+
+        <!-- Derecha: Reflexión Nostálgica -->
+        <div class="editorial-prose">
+          <h3 class="prose-h3">El Eco de las Piedras Eternas</h3>
+          <p>
+            Caminar hoy entre los arcos desgastados del Foro o contemplar las bóvedas del Panteón despierta una nostalgia profunda e inexplicable. Es el recordatorio silencioso de que existió una estirpe de hombres que se negó a construir para lo pasajero. Cada calzada empedrada y cada acueducto levantado sobre los valles llevaba implícito un juramento colectivo: <strong>la vida del individuo es fugaz, pero la obra común es inmortal</strong>.
+          </p>
+          <p>
+            Augusto comprendió desde joven que un líder no es dueño del imperio, sino su primer servidor y su guardián más severo. Soportó la pérdida de sus seres queridos, el peso de las conspiraciones y largas noches de fiebre en campaña porque sabía que, si él flaqueaba, el mundo volvería a sumergirse en la barbarie.
+          </p>
+
+          <blockquote class="editorial-quote">
+            «¿Les parece que he representado bien esta farsa de la vida? Si la obra les ha gustado, aplaudan al despedirme.»
+            <cite>— Últimas palabras de Augusto en Nola, año 14 d.C.</cite>
+          </blockquote>
+
+          <p>
+            Dos milenios después de aquel día en Nola, los reyes que buscaron la comodidad fueron olvidados, pero el nombre de Augusto sigue dando nombre al octavo mes de nuestro calendario y definiendo la cúspide de lo que la voluntad humana puede edificar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: MOTIVACIÓN MASCULINA — CONVIÉRTETE EN UN EMPERADOR -->
+    <section id="emperador" class="editorial-section">
+      <div class="section-header">
+        <h2 class="section-h2">Forja Tu Propio Imperio</h2>
+        <p class="section-subtitle">
+          El espíritu imperial no pertenece a los museos; habita en todo hombre que rehúsa ser esclavo de la apatía, del caos y de sus propios impulsos.
+        </p>
+      </div>
+
+      <div class="section-body-grid">
+        <!-- Izquierda: Fotografía Nostálgica roman-1 -->
+        <aside class="editorial-sidebar">
+          <img src="roman-1.jpg" alt="Nostalgia, Propósito y Legado" class="sidebar-photo">
+          <div class="sidebar-caption">
+            <strong>Amor Fati &amp; Virtus</strong>
+            Construye una vida digna de ser recordada: firme en el deber, serena en la tempestad y leal a quienes caminan a tu lado.
+          </div>
+        </aside>
+
+        <!-- Derecha: Manifiesto Motivacional -->
+        <div class="editorial-prose">
+          <h3 class="prose-h3">El Deber de Gobernar Tu Destino</h3>
+          <p>
+            Vivimos en una época que invita al hombre a la distracción perpetua, a la queja fácil y a la renuncia de su propia fuerza. Se nos enseña a buscar refugio cuando arrecia la dificultad, olvidando que <strong>el carácter masculino solo adquiere temple bajo la presión del fuego y el peso de la responsabilidad</strong>, tal como el joven Octavio frente a un mundo en ruinas.
+          </p>
+          <p>
+            Convertirse en emperador hoy no significa vestir la toga púrpura en el Palatino; significa ejercer el <span class="accent-underline">imperium</span> absoluto sobre ti mismo. Es levantarte cuando nadie te observa, cumplir tu palabra cuando cuesta caro, proteger a los tuyos sin pedir recompensa y dominar tu oficio con una excelencia que no admita mediocridad.
+          </p>
+
+          <blockquote class="editorial-quote">
+            «No naciste para contemplar desde las gradas cómo otros escriben la historia. Toma el ladrillo crudo de tus días, somételo al rigor de la disciplina y transfórmalo en mármol.»
+            <cite>— Manifiesto del Constructor • Despliegue de Software</cite>
+          </blockquote>
+
+          <div id="legado" class="prose-subblock">
+            <h3 class="prose-h3">Idempotencia del Carácter</h3>
+            <p>
+              En la ingeniería de sistemas llamamos <strong>idempotencia</strong> a la capacidad de mantener el estado deseado sin importar cuántas veces golpee el error o la deriva. En la vida de un hombre, los romanos llamaron a esa misma virtud <em>Constantia</em> y <em>Gravitas</em>: permanecer firme en tu propósito cuando todo alrededor tiembla.
+            </p>
+            <p>
+              Que cada línea de código que escribas, cada proyecto que levantes y cada promesa que pronuncies lleve el sello de Augusto. <strong>Nosotros pasaremos, pero la grandeza de lo que construimos con honor vivirá para siempre.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pie de Página Minimalista -->
+    <footer class="editorial-footer">
+      <div class="footer-col">
+        <h5>© A.D. MMXXVI</h5>
+        <ul>
+          <li>Moriemur, sed Roma vivet</li>
+          <li>Imperator Caesar Augustus</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Virtutes Romanae</h5>
+        <ul>
+          <li>Virtus (Valor y Excelencia)</li>
+          <li>Gravitas (Dignidad y Peso)</li>
+          <li>Disciplina (Dominio Propio)</li>
+          <li>Constantia (Perseverancia)</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Nodo Auditado (Ohai)</h5>
+        <ul>
+          <li>Host: <%= node['hostname'] rescue 'debian' %></li>
+          <li>IP: <%= node['ipaddress'] rescue '127.0.0.1' %></li>
+          <li>SO: <%= node['platform'].capitalize rescue 'Debian' %> <%= node['platform_version'] rescue '12' %></li>
+          <li>Memoria: <%= (node['memory']['total'].to_i / 1024 rescue '1024') %> MB</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Legio Academica</h5>
+        <ul>
+          <li>Despliegue de Software</li>
+          <li>7° Semestre • UV</li>
+          <li><%= node['web_server']['author'] rescue 'Chef Infra Lab' %></li>
+        </ul>
+      </div>
+
+      <div>
+        <a href="#top" class="top-circle-btn" title="Volver arriba">Top</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ====================================================================
+       VERIFICACIÓN DE CONVERGENCIA DE CHEF INFRA Y PROTOCOLO HTTP
+       ==================================================================== -->
+  <script>
+    (function() {
+      // Cuando Chef compila la plantilla ERB, evalúa la expresión Ruby de abajo y la convierte en "AUGUSTUS_CONVERGED".
+      // Si alguien renombra el archivo .erb a .html y lo abre sin Chef, la cadena contendrá literalmente el tag ERB sin procesar.
+      var chefSeal = "<%= 'AUGUSTUS_CONVERGED' %>";
+      var isFileProtocol = (window.location.protocol === 'file:');
+      var isUncompiledErb = (chefSeal.indexOf('<' + '%=') !== -1);
+      var isAuthorPreview = (window.location.search.indexOf('preview=augustus') !== -1);
+
+      if ((isFileProtocol || isUncompiledErb) && !isAuthorPreview) {
+        document.getElementById('imperial-monument').style.display = 'none';
+        document.getElementById('praetorian-lock').style.display = 'flex';
+      }
+    })();
+  </script>
+</body>
+</html>

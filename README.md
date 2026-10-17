@@ -99,11 +99,15 @@ chef-project/
 │       ├── metadata.rb         # Metadatos del cookbook (versión, soporte)
 │       ├── attributes/
 │       │   └── default.rb      # Variables configurables (puerto, título, autor)
+│       ├── files/
+│       │   └── default/        # Recursos estáticos (imágenes romanas y fuentes WOFF2)
 │       ├── recipes/
 │       │   └── default.rb      # Receta en Ruby DSL (apt, package, directory, template, service)
 │       └── templates/
 │           └── default/
-│               └── index.html.erb # Plantilla HTML5 inyectada con métricas de Ohai
+│               ├── index.html.erb      # Dashboard principal inyectado con métricas de Ohai
+│               └── easter_egg.html.erb # Plantilla secreta del Reto Final (Augustus Caesar)
+├── LAB_GUIDE.md                # Guía práctica del laboratorio (Antes -> Auto -> Resultado)
 ├── MONOGRAFIA_CHEF.md          # Monografía técnica exhaustiva en prosa continua
 ├── ARQUITECTURA_Y_FLUJO.md     # Explicación del ciclo de vida y modelo de capas
 └── GUIA_ACTIVIDAD.md           # Guía íntegra de requerimientos y evaluación de la actividad
@@ -113,10 +117,7 @@ chef-project/
 
 ## 📚 Documentación de Consulta
 
+* 🧪 **[Guía Práctica de Laboratorio](LAB_GUIDE.md):** Manual paso a paso para estudiantes con la dinámica *Antes $\rightarrow$ Automatización $\rightarrow$ Resultado* y evidencias.
 * 📖 **[Monografía Técnica Completa](MONOGRAFIA_CHEF.md):** Historia, problemas que resuelve, filosofía declarativa/imperativa, ciclo de compilación/convergencia y comparativa con Ansible y Terraform.
-* 🧭 **[Guía de Arquitectura y Ciclo de Vida](ARQUITECTURA_Y_FLUJO.md):** Diagrama de secuencia, modelo de capas y el rol de Chef vs Docker en la industria.
+* 🧭 **[Guía de Arquitectura y Ciclo de Vida](ARQUITECTURA_Y_FLUJO.md):** Diagrama de secuencia, modelo de capas, Chef-Zero y el rol de Chef vs Docker en la industria.
 * 📋 **[Guía Oficial de la Actividad](GUIA_ACTIVIDAD.md):** Los 10 puntos clave de la exposición oral, estructura del laboratorio y requisitos de los entregables.
-
----
-
-> ℹ️ **Nota de Avance:** Las instrucciones detalladas para el laboratorio del grupo (`LAB_GUIDE.md`) con la dinámica *"Antes $\rightarrow$ Automatización $\rightarrow$ Resultado"* y el **Reto Final** para los compañeros se integrarán a continuación.

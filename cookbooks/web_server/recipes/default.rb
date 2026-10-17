@@ -67,6 +67,42 @@ template "#{node['web_server']['doc_root']}/index.html" do
 end
 
 # ------------------------------------------------------------------------------
+# 6. Recursos 'cookbook_file' y 'remote_directory': Recursos estáticos y fuentes
+# ------------------------------------------------------------------------------
+# Copia las imágenes y la familia tipográfica local (Ranade) desde files/default/
+# hacia el directorio raíz del servidor web.
+# ------------------------------------------------------------------------------
+%w(roman-1.jpg roman-2.jpg roman-art.jpg).each do |asset|
+  cookbook_file "#{node['web_server']['doc_root']}/#{asset}" do
+    source asset
+    owner 'root'
+    group 'root'
+    mode '0644'
+    action :create
+  end
+end
+
+remote_directory "#{node['web_server']['doc_root']}/Fonts" do
+  source 'Fonts'
+  owner 'root'
+  group 'root'
+  mode '0755'
+  files_owner 'root'
+  files_group 'root'
+  files_mode '0644'
+  action :create
+end
+
+# ------------------------------------------------------------------------------
+# 7. ZONA DEL RETO FINAL: El Monumento Oculto del Emperador
+# ------------------------------------------------------------------------------
+# Agrega aquí abajo el recurso 'template' para compilar y desplegar la plantilla
+# 'easter_egg.html.erb' en "#{node['web_server']['doc_root']}/easter_egg.html".
+# (Guíate del paso 5 de arriba donde se despliega index.html.erb).
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
 # Mensaje informativo en el log de Chef al finalizar la convergencia
 # ------------------------------------------------------------------------------
 log 'mensaje_exito' do

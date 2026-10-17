@@ -121,6 +121,7 @@ chef-project/
 │
 ├── 📜 DOCUMENTACIÓN Y TEORÍA:
 │   ├── README.md                  -> Portada principal, stack e inicio rápido.
+│   ├── LAB_GUIDE.md               -> Guía práctica de laboratorio para compañeros.
 │   ├── MONOGRAFIA_CHEF.md         -> Monografía exhaustiva en prosa continua sobre Chef.
 │   ├── GUIA_ACTIVIDAD.md          -> Guía íntegra de los 10 puntos de exposición y actividad.
 │   └── ARQUITECTURA_Y_FLUJO.md    -> Este documento de flujo de trabajo y arquitectura.
@@ -132,9 +133,11 @@ chef-project/
 │   └── cookbooks/web_server/
 │       ├── metadata.rb            -> Nombre, versión y compatibilidad (Debian).
 │       ├── attributes/default.rb   -> Variables parametrizables (puerto 80, mensajes).
+│       ├── files/default/         -> Imágenes y tipografías locales (Ranade WOFF2).
 │       ├── recipes/default.rb      -> Receta en Ruby DSL con recursos nativos de systemd.
 │       └── templates/default/
-│           └── index.html.erb     -> Plantilla HTML5 moderna inyectada con datos de Ohai.
+│           ├── index.html.erb      -> Dashboard HTML5 moderno inyectado con datos de Ohai.
+│           └── easter_egg.html.erb -> Plantilla secreta del Reto Final (Augustus Caesar).
 │
 └── 🚀 SCRIPTS AUXILIARES:
     ├── install_cinc.sh            -> Descarga e instala Cinc Client en Debian en 15 segundos.

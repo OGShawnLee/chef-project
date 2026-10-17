@@ -1,0 +1,13 @@
+# Vagrant local state & VM data
+.vagrant/
+
+# Chef / Cinc temporary & local keys
+.chef/
+*.pem
+nodes/
+.kitchen/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
