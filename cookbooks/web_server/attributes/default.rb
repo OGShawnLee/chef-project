@@ -20,5 +20,5 @@ default['web_server']['port']         = 80
 # Metadatos personalizables para la página web (Renderizados en index.html.erb)
 default['web_server']['site_title']   = 'Servidor Web Automatizado con Chef Infra'
 default['web_server']['author']       = 'Equipo UV - Despliegue de Software'
-default['web_server']['message']      = 'Infraestructura desplegada exitosamente mediante Codigo (IaC) e Idempotencia!'
-default['web_server']['environment']  = 'Demostracion de Laboratorio'
+default['web_server']['message']      = '&iexcl;Infraestructura desplegada exitosamente mediante C&oacute;digo (IaC) e Idempotencia!'
+default['web_server']['environment']  = 'Laboratorio'

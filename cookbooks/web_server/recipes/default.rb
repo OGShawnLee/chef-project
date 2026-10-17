@@ -72,7 +72,7 @@ end
 # Copia las imágenes y la familia tipográfica local (Ranade) desde files/default/
 # hacia el directorio raíz del servidor web.
 # ------------------------------------------------------------------------------
-%w(roman-1.jpg roman-2.jpg roman-art.jpg the-neighbourhood.jpg).each do |asset|
+%w(roman-1.jpg roman-2.jpg roman-art.jpg editorial-art.png).each do |asset|
   cookbook_file "#{node['web_server']['doc_root']}/#{asset}" do
     source asset
     owner 'root'
