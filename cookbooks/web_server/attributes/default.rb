@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # ==============================================================================
 # Atributos por defecto del Cookbook: web_server
 # ==============================================================================
@@ -19,5 +20,5 @@ default['web_server']['port']         = 80
 # Metadatos personalizables para la página web (Renderizados en index.html.erb)
 default['web_server']['site_title']   = 'Servidor Web Automatizado con Chef Infra'
 default['web_server']['author']       = 'Equipo UV - Despliegue de Software'
-default['web_server']['message']      = '¡Infraestructura desplegada exitosamente mediante Código (IaC) e Idempotencia!'
-default['web_server']['environment']  = 'Demostración de Laboratorio'
+default['web_server']['message']      = 'Infraestructura desplegada exitosamente mediante Codigo (IaC) e Idempotencia!'
+default['web_server']['environment']  = 'Demostracion de Laboratorio'
