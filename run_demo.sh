@@ -40,9 +40,11 @@ echo "=========================================================="
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Ejecutar el cliente en modo local apuntando a la carpeta de cookbooks
+# (diff_disabled=true evita imprimir en terminal el código completo de las plantillas)
 sudo $CHEF_CMD --local-mode \
                --chef-license accept-no-persist \
                --config-option cookbook_path="$SCRIPT_DIR/cookbooks" \
+               --config-option diff_disabled=true \
                --runlist 'recipe[web_server]'
 
 echo ""

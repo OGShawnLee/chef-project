@@ -99,6 +99,7 @@ end
 # Agrega aquí abajo el recurso 'template' para compilar y desplegar la plantilla
 # 'easter_egg.html.erb' en "#{node['web_server']['doc_root']}/easter_egg.html".
 # (Guíate del paso 5 de arriba donde se despliega index.html.erb).
+# Puedes usar 'sensitive true' para evitar spoilers en la terminal.
 # ------------------------------------------------------------------------------
 
 

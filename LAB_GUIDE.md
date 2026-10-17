@@ -240,6 +240,7 @@ El servidor web Nginx te arrojará un error **`404 Not Found`**. Esto ocurre por
     owner 'root'
     group 'root'
     mode '0644'
+    sensitive true # Opcional: evita que Chef imprima el diff completo en terminal
     action :create
   end
   ```
