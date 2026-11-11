@@ -91,33 +91,41 @@ vagrant provision
 
 ```
 chef-project/
-├── Vagrantfile                 # Definición de la VM (Debian 12, red, RAM, provisionador)
-├── install_cinc.sh             # Script de instalación automática de Cinc Client
-├── run_demo.sh                 # Script de ejecución de Chef en Modo Local
+├── .routing/                       # Hub de documentación especializada y contexto para agentes
+│   ├── CONTEXT.md                  # Panorama general y mapa conceptual para agentes
+│   ├── CHEF_GUIA_DEFINITIVA.md     # Guía integral (Chef vs Ansible, Ohai, Flujo Día 0 a Prod)
+│   ├── ARQUITECTURA_Y_FLUJO.md     # Explicación del ciclo de vida y modelo de capas
+│   ├── LAB_GUIDE.md                # Guía práctica del laboratorio (Antes -> Auto -> Resultado)
+│   ├── MONOGRAFIA_CHEF.md          # Monografía técnica exhaustiva en prosa continua
+│   └── GUIA_ACTIVIDAD.md           # Guía de requerimientos y evaluación de la actividad
+├── Vagrantfile                     # Definición de la VM (Debian 12, red, RAM, provisionador)
+├── install_cinc.sh                 # Script de instalación automática de Cinc Client
+├── run_demo.sh                     # Script de ejecución de Chef en Modo Local
 ├── cookbooks/
-│   └── web_server/             # Cookbook principal de la demostración
-│       ├── metadata.rb         # Metadatos del cookbook (versión, soporte)
+│   └── web_server/                 # Cookbook principal de la demostración
+│       ├── metadata.rb             # Metadatos del cookbook (versión, soporte)
 │       ├── attributes/
-│       │   └── default.rb      # Variables configurables (puerto, título, autor)
+│       │   └── default.rb          # Variables configurables (puerto, título, autor)
 │       ├── files/
-│       │   └── default/        # Recursos estáticos y tipografías locales (WOFF2)
+│       │   └── default/            # Recursos estáticos y tipografías locales (WOFF2)
 │       ├── recipes/
-│       │   └── default.rb      # Receta en Ruby DSL (apt, package, directory, template, service)
+│       │   └── default.rb          # Receta en Ruby DSL (apt, package, directory, template, service)
 │       └── templates/
 │           └── default/
 │               ├── index.html.erb      # Dashboard principal inyectado con métricas de Ohai
 │               └── easter_egg.html.erb # Plantilla secreta del Reto Final (Easter Egg)
-├── LAB_GUIDE.md                # Guía práctica del laboratorio (Antes -> Auto -> Resultado)
-├── MONOGRAFIA_CHEF.md          # Monografía técnica exhaustiva en prosa continua
-├── ARQUITECTURA_Y_FLUJO.md     # Explicación del ciclo de vida y modelo de capas
-└── GUIA_ACTIVIDAD.md           # Guía íntegra de requerimientos y evaluación de la actividad
+└── README.md                       # Portada y guía rápida del proyecto
 ```
 
 ---
 
 ## 📚 Documentación de Consulta
 
-* 🧪 **[Guía Práctica de Laboratorio](LAB_GUIDE.md):** Manual paso a paso para estudiantes con la dinámica *Antes $\rightarrow$ Automatización $\rightarrow$ Resultado* y evidencias.
-* 📖 **[Monografía Técnica Completa](MONOGRAFIA_CHEF.md):** Historia, problemas que resuelve, filosofía declarativa/imperativa, ciclo de compilación/convergencia y comparativa con Ansible y Terraform.
-* 🧭 **[Guía de Arquitectura y Ciclo de Vida](ARQUITECTURA_Y_FLUJO.md):** Diagrama de secuencia, modelo de capas, Chef-Zero y el rol de Chef vs Docker en la industria.
-* 📋 **[Guía Oficial de la Actividad](GUIA_ACTIVIDAD.md):** Los 10 puntos clave de la exposición oral, estructura del laboratorio y requisitos de los entregables.
+Toda la documentación técnica y de soporte se encuentra organizada en el directorio [`.routing/`](.routing/):
+
+* 📘 **[Guía Definitiva de Chef Infra](.routing/CHEF_GUIA_DEFINITIVA.md):** Manual completo que cubre desde fundamentos y problemas estructurales, comparativa técnica con Ansible, funcionamiento interno de Ohai, hasta el flujo de extremo a extremo de aprovisionamiento (instalación del Chef Server central, generación de llaves RSA, Workstation y Bootstrap de clientes).
+* 🤖 **[Contexto General para Agentes y Desarrolladores](.routing/CONTEXT.md):** Mapa conceptual del proyecto, arquitectura de stack y acceso directo a cada componente.
+* 🧪 **[Guía Práctica de Laboratorio](.routing/LAB_GUIDE.md):** Manual paso a paso para estudiantes con la dinámica *Antes $\rightarrow$ Automatización $\rightarrow$ Resultado*, pruebas de idempotencia y reto del Easter Egg.
+* 🧭 **[Guía de Arquitectura y Ciclo de Vida](.routing/ARQUITECTURA_Y_FLUJO.md):** Diagrama de secuencia Mermaid, modelo de capas (Vagrant vs Chef), Chef-Zero y la relación técnica entre `chef-client` y `cinc-client`.
+* 📖 **[Monografía Técnica Completa](.routing/MONOGRAFIA_CHEF.md):** Historia de Chef, filosofía declarativa/imperativa en Ruby DSL, ciclo de compilación/convergencia y comparativa con Terraform y Docker.
+* 📋 **[Guía Oficial de la Actividad](.routing/GUIA_ACTIVIDAD.md):** Los 10 puntos clave de la exposición oral, estructura del laboratorio y requisitos de los entregables evaluables.
